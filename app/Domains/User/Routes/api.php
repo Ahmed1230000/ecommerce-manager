@@ -3,6 +3,7 @@
 use App\Domains\User\Http\Controllers\AuthController;
 use App\Domains\User\Http\Controllers\GetProfileController;
 use App\Domains\User\Http\Controllers\ResetPasswordController;
+use App\Domains\User\Http\Controllers\RoleController;
 use App\Domains\User\Http\Controllers\VerifyOtpForUserController;
 use Illuminate\Support\Facades\Route;
 
@@ -35,5 +36,6 @@ Route::middleware('auth:api')->group(function () {
     // ✅ Profile requires verified OTP
     Route::middleware('verified.otp')->group(function () {
         Route::get('/profile', [GetProfileController::class, 'show']);
+        Route::apiResource('/roles', RoleController::class);
     });
 });
